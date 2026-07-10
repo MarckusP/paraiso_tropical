@@ -127,40 +127,6 @@ document.querySelectorAll('[data-gal]').forEach(gal => {
   }));
 });
 
-/* ===== Carrossel externo de hospedagens ===== */
-const track = document.getElementById('hospTrack');
-if(track){
-  const total = track.children.length;
-  const dotsBox2 = document.getElementById('hospDots');
-  const hospTitle = document.getElementById('hospTitle');
-  const hospCounter = document.getElementById('hospCounter');
-  const hospPrevBtn = document.getElementById('hospPrev');
-  const hospNextBtn = document.getElementById('hospNext');
-  const nomes = [...track.children].map(s => s.dataset.nome || '');
-  let cur = 0;
-
-  if(dotsBox2){
-    for(let k = 0; k < total; k++){
-      const b = document.createElement('b');
-      if(k === 0) b.classList.add('on');
-      b.onclick = () => hospSet(k);
-      dotsBox2.appendChild(b);
-    }
-  }
-
-  function hospSet(k){
-    cur = (k + total) % total;
-    track.style.transform = `translateX(-${cur * 100}%)`;
-    if(dotsBox2) [...dotsBox2.children].forEach((d, x) => d.classList.toggle('on', x === cur));
-    if(hospTitle) hospTitle.textContent = nomes[cur];
-    if(hospCounter) hospCounter.textContent = `${cur+1} / ${total}`;
-  }
-  function hospGo(dir){ hospSet(cur + dir); }
-  if(hospPrevBtn) hospPrevBtn.onclick = () => hospGo(-1);
-  if(hospNextBtn) hospNextBtn.onclick = () => hospGo(1);
-  hospSet(0);
-}
-
 /* ===== Mosaico: ampliar imagens ===== */
 document.querySelectorAll('.mosaic .tile img').forEach(im => im.addEventListener('click', () => {
   document.getElementById('lbImg').src = im.src;
