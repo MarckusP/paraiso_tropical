@@ -175,6 +175,11 @@ body.menu-open .hamb span:nth-child(3){transform:translateY(-8px) rotate(-45deg)
   body.menu-open nav.main-nav{opacity:1;visibility:visible}
   nav.main-nav a{color:#fff !important;font-size:1.2rem}
   body.menu-open .hamb span{background:#fff !important}
+  /* backdrop-filter no header cria um containing block novo para o nav
+     fixed, prendendo-o à altura do header em vez da viewport quando a
+     página já está rolada (header.scrolled). Desativa enquanto o menu
+     está aberto para o overlay cobrir a tela inteira corretamente. */
+  body.menu-open header.scrolled{backdrop-filter:none}
 }
 
 /* ============ HERO ============ */
